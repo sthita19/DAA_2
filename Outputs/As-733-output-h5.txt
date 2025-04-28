@@ -1,0 +1,16 @@
+Dataset: As-733-clean.txt
+h-value: 5
+Graph information:
+  Nodes: 1486
+  Edges: 3297
+  Directed: No
+
+Algorithm execution:
+  Total h-cliques found: 3359
+  Final density: 318.999999
+  Total execution time: 6.28 seconds
+
+Results:
+  Densest subgraph size: 1 nodes
+  Densest subgraph vertices (remapped IDs): 3
+  Densest subgraph vertices (original IDs): 2914

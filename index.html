@@ -137,7 +137,7 @@
 
 <body>
     <div class="container">
-        <h1>Maximal Clique Enumeration Report</h1>
+        <h1>Densest H-Clique Subgraph Problem and Algorithms</h1>
 
         <div class="button-container">
             <button onclick="showContent('contributors')">Contributors</button>
@@ -286,27 +286,27 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>415.000000</td>
-                        <td>2.52 seconds</td>
+                        <td>1.916949</td>
+                        <td>3.13 seconds</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>638.999999</td>
-                        <td>2.47 seconds</td>
+                        <td>213.000000</td>
+                        <td>1.95 seconds</td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>1039.999999</td>
-                        <td>3.90 seconds</td>
+                        <td>259.999999</td>
+                        <td>3.57 seconds</td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>1594.999999</td>
-                        <td>6.87 seconds</td>
+                        <td>318.999999</td>
+                        <td>6.28 seconds</td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td>1565.999999</td>
+                        <td>260.999999</td>
                         <td>8.51 seconds</td>
                     </tr>
                 </table>
@@ -331,28 +331,28 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>2627.999998</td>
-                        <td>1024.93 seconds</td>
+                        <td>2.144320</td>
+                        <td>1140.11 seconds</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>3812.999996</td>
-                        <td>310.51 seconds</td>
+                        <td>1270.999999</td>
+                        <td>253.99 seconds</td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>9860.999991</td>
-                        <td>732.58 seconds</td>
+                        <td>2465.249991</td>
+                        <td>679.81 seconds</td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>20112.999981</td>
-                        <td>1592.73 seconds</td>
+                        <td>4022.599985</td>
+                        <td>1485.82 seconds</td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td>33754.999969</td>
-                        <td>2438.98 seconds</td>
+                        <td>5625.833312</td>
+                        <td>2336.44 seconds</td>
                     </tr>
                 </table>
 
@@ -377,28 +377,28 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>65.000000</td>
-                        <td>198.44 seconds</td>
+                        <td>1.799814</td>
+                        <td>317.85 seconds</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>505.000000</td>
-                        <td>181.04 seconds</td>
+                        <td>168.333333</td>
+                        <td>143.41 seconds</td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>9860.999991</td>
-                        <td>732.58 seconds</td>
+                        <td>1141.999996</td>
+                        <td>273.79 seconds</td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>31548.999971</td>
-                        <td>848.78 seconds</td>
+                        <td>6309.799976</td>
+                        <td>699.15 seconds</td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td>169972.999842</td>
-                        <td>2633.43 seconds</td>
+                        <td>28328.833228</td>
+                        <td>2326.39 seconds</td>
                     </tr>
                 </table>
 
@@ -534,6 +534,11 @@
                         <td>1123.750000</td>
                         <td>928.51 seconds</td>
                     </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>6293.000000</td>
+                        <td>17594.58 seconds</td>
+                    </tr>
                 </table>
 
 
@@ -622,16 +627,16 @@
                 });
             }
             const Labels = [2, 3, 4, 5, 6];
-            const outputAsDataDense = [415.000000, 638.999999, 1039.999999, 1594.999999, 1565.999999];
-            const outputAsDataTime = [2.52, 2.47, 3.90, 6.87, 8.51];
+            const outputAsDataDense = [1.916949, 213.0, 259.999999, 318.999999, 260.999999];
+            const outputAsDataTime = [3.13, 1.95, 3.57, 6.28, 7.88];
             density('outputAsdense', Labels, outputAsDataDense)
             exec('outputAsTime', Labels, outputAsDataTime)
-            const ouputCaidaDataDense = [2627.999998, 3812.999996, 9860.999991, 20112.999981, 33754.999969];
-            const ouputCaidaDataTime = [1024.93, 310.51, 732.58, 1592.73, 2438.98];
+            const ouputCaidaDataDense = [2.144320, 1270.999999, 2465.249991, 4022.599985, 5625.833312];
+            const ouputCaidaDataTime = [1140.11, 253.99, 679.81, 1485.82, 2336.44];
             density('outputCaidadense', Labels, ouputCaidaDataDense)
             exec('outputCaidaTime', Labels, ouputCaidaDataTime)
-            const ouputCaDataDense = [65.000000, 505.000000, 9860.999991, 31548.999971, 169972.999842];
-            const ouputCaDataTime = [198.44, 181.04, 732.58, 848.78, 2633.43]
+            const ouputCaDataDense = [1.799814, 168.333333, 1141.999996, 6309.799976, 28328.833228];
+            const ouputCaDataTime = [317.85, 143.41, 273.79, 699.15, 2326.39];
             density('outputCadense', Labels, ouputCaDataDense)
             exec('outputCaTime', Labels, ouputCaDataTime)
             const coreAsDataDense = [8.321429, 35.800000, 96.580645, 178.080000, 220.227273];
@@ -643,10 +648,10 @@
             const coreCaidaDataTime = [236.91, 431.45, 793.94, 2370.28, 4792.01];
             density('coreCaidadense', Labels, coreCaidaDataDense)
             exec('coreCaidaTime', Labels, coreCaidaDataTime)
-            const coreCaDataDense = [15.5, 155.0, 1123.75];
-            const coreCaDataTime = [55.67, 161.94, 928.51];
-            density('coreCadense', [2, 3, 4], coreCaDataDense)
-            exec('coreCaTime', [2, 3, 4], coreCaDataTime)
+            const coreCaDataDense = [15.5, 155.0, 1123.75, 6293.000000];
+            const coreCaDataTime = [55.67, 161.94, 928.51, 17594.58];
+            density('coreCadense', [2, 3, 4, 5], coreCaDataDense)
+            exec('coreCaTime', [2, 3, 4, 5], coreCaDataTime)
 
 
         </script>

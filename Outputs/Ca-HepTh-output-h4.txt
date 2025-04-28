@@ -1,0 +1,16 @@
+Dataset: Ca-HepTh-clean.txt
+h-value: 4
+Graph information:
+  Nodes: 9877
+  Edges: 51971
+  Directed: Yes
+
+Algorithm execution:
+  Total h-cliques found: 65592
+  Final density: 1141.999996
+  Total execution time: 273.79 seconds
+
+Results:
+  Densest subgraph size: 1 nodes
+  Densest subgraph vertices (remapped IDs): 1306
+  Densest subgraph vertices (original IDs): 39085

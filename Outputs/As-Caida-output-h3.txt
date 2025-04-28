@@ -1,0 +1,16 @@
+Dataset: As-Caida-clean.txt
+h-value: 3
+Graph information:
+  Nodes: 26475
+  Edges: 106762
+  Directed: Yes
+
+Algorithm execution:
+  Total h-cliques found: 36365
+  Final density: 1270.999999
+  Total execution time: 253.99 seconds
+
+Results:
+  Densest subgraph size: 1 nodes
+  Densest subgraph vertices (remapped IDs): 43
+  Densest subgraph vertices (original IDs): 3356

@@ -509,9 +509,9 @@ tuple<vector<int>, double, int> findDensestSubgraph(const Graph& adj, int h) {
             }
         }
 
-        // Add edges v -> t with capacity = mid (our density guess)
+        // Add edges v -> t with capacity = mid * h (our density guess)
         for (int i = 0; i < n; ++i) {
-            addFlowEdge(i + 2, t, mid, flow);
+            addFlowEdge(i + 2, t, mid * h, flow);
         }
 
         // For h > 2, add additional edges to represent clique structure
@@ -559,28 +559,47 @@ tuple<vector<int>, double, int> findDensestSubgraph(const Graph& adj, int h) {
         log("    Max flow: " + to_string(flow_value) + " (computed in " + 
             to_string(flow_time) + " seconds)");
 
-        // Find min-cut
-        log("    Finding min cut...");
-        vector<int> min_cut = findMinCut(s, t, flow);
-        
-        // Check if cut is non-trivial
-        if (min_cut.size() <= 1) {
-            high = mid; // Density too high
-            log("    Cut is trivial (only source). Reducing density bound to " + to_string(high));
+        // --- NEW FEASIBILITY CHECK BASED ON FLOW VALUE ---
+        double totalSourceCapacity = 0.0;
+        if (h == 2) {
+            // For Goldberg network: Compare flow_value against m (total edges)
+            totalSourceCapacity = static_cast<double>(totalCliques); // m = totalCliques when h=2
         } else {
-            low = mid; // Found a candidate subgraph
-            
-            // Extract vertices from min-cut
-            bestSubgraph.clear();
-            for (int node : min_cut) {
-                if (node >= 2 && node < n + 2) {
-                    bestSubgraph.push_back(node - 2);
-                }
+            // For h > 2 general network: Compare flow_value against sum of cliqueDegrees
+            for(int i=0; i<n; ++i) { // Sum over ALL n potential nodes
+                totalSourceCapacity += cliqueDegrees[i];
             }
-            
-            log("    Found subgraph with " + to_string(bestSubgraph.size()) + 
-                " nodes. Increasing density bound to " + to_string(low));
         }
+        log("    Total source capacity calculated: " + to_string(totalSourceCapacity));
+
+        // The check: Compare flow value to source capacity
+        if (flow_value >= totalSourceCapacity - EPSILON) { // Use EPSILON for float comparison
+             // If flow equals source capacity, it implies no subgraph with density >= mid exists
+             high = mid;
+             log("    No subgraph with density >= " + to_string(mid) + " exists. Reducing density bound to " + to_string(high));
+        } else {
+             // Flow is less than source capacity, indicating a non-trivial cut exists
+             low = mid;
+
+             // Find the actual min-cut nodes from the *residual graph* after max flow
+             log("    Finding min cut nodes from residual graph...");
+             // **Ensure computeMaxFlow returned the residual graph or was called on a copy**
+             // Assuming 'flow' is the residual graph AFTER max-flow computation:
+             vector<int> min_cut_nodes = findMinCut(s, t, flow); // Use the residual graph
+
+             vector<int> currentSubgraphNodes; // Store nodes for this 'low' value
+             for (int node : min_cut_nodes) {
+                 // Ensure node index is within the range of graph vertices in the flow network
+                 if (node >= 2 && node < n + 2) {
+                     currentSubgraphNodes.push_back(node - 2); // Map back to original 0-based index
+                 }
+             }
+             // Update bestSubgraph found so far for the current 'low'
+             bestSubgraph = currentSubgraphNodes; // Store the subgraph corresponding to the current 'low'
+             log("    Found potential subgraph with " + to_string(bestSubgraph.size()) +
+                 " nodes. Increasing density bound to " + to_string(low));
+        }
+        // --- END OF NEW FEASIBILITY CHECK ---
     }
     
     log("Binary search completed after " + to_string(iteration) + " iterations");

@@ -1,0 +1,16 @@
+Dataset: Ca-HepTh-clean.txt
+Algorithm: CoreExact
+h-value: 5
+Graph information:
+  Nodes: 9877
+  Edges: 51971
+  Directed: Yes
+
+Algorithm execution:
+  Final density: 6293.000000
+  Total execution time: 17594.58 seconds
+
+Results:
+  Densest subgraph size: 32 nodes
+  Densest subgraph vertices (remapped IDs): 1306, 1327, 4484, 4485, 4486, 4487, 4488, 4489, 4490, 4491, 4492, 4493, 4494, 4496, 4497, 4498, 4499, 4500, 4501, 4502, 4503, 4504, 4505, 4506, 4507, 4508, 4509, 4510, 4511, 4512, 4513, 4515
+  Densest subgraph vertices (original IDs): 39085, 16278, 49958, 361, 5339, 6055, 6254, 6517, 6543, 10431, 11078, 15618, 18433, 19470, 23825, 24711, 25092, 26398, 32833, 37963, 38055, 38500, 40435, 42819, 46344, 47542, 48098, 49074, 51294, 51840, 53450, 55443
