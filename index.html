@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximal Clique Enumeration Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-color: #1a1a1a;
+            /* Dark background */
+            color: #ffffff;
+            /* White text */
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ffffff;
+            /* Royal green for headings */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #2a2a2a;
+            /* Darker container background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-container {
+            margin: 20px 0;
+        }
+
+        button {
+            margin: 10px;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: #00674F;
+            /* New button color */
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00523D;
+            /* Slightly darker green on hover */
+        }
+
+        .content {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #333333;
+            /* Darker background for content sections */
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            /* White text */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #4CAF50;
+            /* Royal green borders for tables */
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            color: #ffffff;
+            /* White text */
+        }
+
+        th {
+            background-color: #4CAF50;
+            /* Royal green for table headers */
+            color: #ffffff;
+            /* White text */
+        }
+
+        .dataset-section {
+            display: none;
+        }
+
+        .algorithm-content {
+            display: none;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+        }
+
+        canvas {
+            background-color: #2a2a2a;
+            /* Dark background for charts */
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        function showContent(id) {
+            // Hide all content sections
+            document.querySelectorAll('.content').forEach(div => div.style.display = 'none');
+            // Show the selected content section
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function showAlgorithmContent(id) {
+            // Hide all algorithm content sections
+            document.querySelectorAll('.algorithm-content').forEach(div => div.style.display = 'none');
+            // Show the selected algorithm content section
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function toggleDataset(id) {
+            var section = document.getElementById(id);
+            section.style.display = section.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Maximal Clique Enumeration Report</h1>
+
+        <div class="button-container">
+            <button onclick="showContent('contributors')">Contributors</button>
+            <button onclick="showContent('datasets')">Datasets</button>
+            <button onclick="showContent('algorithms')">Algorithms</button>
+        </div>
+
+        <div id="contributors" class="content">
+            <h2>Contributors</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Id</th>
+                    <th>Contribution</th>
+                </tr>
+                <tr>
+                    <td>Sthitaprajna</td>
+                    <td>2021B3A71082H</td>
+                    <td>Contributed to the implementation of the CORE-EXACT algorithm .
+                        Implemented OUTPUT algorithm.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kushagra Mishra</td>
+                    <td>2021B5A72970H</td>
+                    <td>Contributed to the implementation of the OUTPUT algorithm .
+                        Authored the report
+                    </td>
+                </tr>
+                <tr>
+                    <td>Riya Agrawal</td>
+                    <td>2021B3A70996H</td>
+                    <td>Contributed to the implementation of the CORE-EXACT algorithm .
+                        Helped develop and host the website
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dhruv Choudhary</td>
+                    <td>2021B3A73142H</td>
+                    <td>Contributed to the implementation of the OUTPUT algorithm .
+                        Authored the report
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Waleed Iqbal Shaikh</td>
+                    <td>2021B3A70559H</td>
+                    <td>
+                        Contributed to the implementation of the OUTPUT algorithm .
+                        Helped develop and host the website
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="datasets" class="content">
+            <h2>Datasets</h2>
+
+            <button onclick="toggleDataset('CA')">CA-HepTh</button>
+            <div id="CA" class="dataset-section">
+                <table>
+                    <tr>
+                        <th>Nodes / Edges</th>
+                        <td>9877 / 51971</td>
+                    </tr>
+
+                    <tr>
+                        <th>Description</th>
+                        <td>Useful for studying collaboration patterns and identifying core research groups in
+                            scientific communities.
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <button onclick="toggleDataset('As')">As-733</button>
+            <div id="As" class="dataset-section">
+                <table>
+                    <tr>
+                        <th>Nodes / Edges</th>
+                        <td>1,486/ 3,297 </td>
+                    </tr>
+
+                    <tr>
+                        <th>Description</th>
+                        <td>Represents an early snapshot of Internet topology at the AS level, useful for analyzing
+                            network structure and evolution.
+                        </td>
+                    </tr>
+                </table>
+
+
+            </div>
+
+            <button onclick="toggleDataset('Caida')">As-Caida</button>
+            <div id="Caida" class="dataset-section">
+                <table>
+                    <tr>
+                        <th>Nodes / Edges</th>
+                        <td>26,475/ 106,762 </td>
+                    </tr>
+
+                    <tr>
+                        <th>Description</th>
+                        <td>Provides a more recent snapshot of the Internet's AS-level topology, valuable for studying
+                            large-scale network structure, connectivity, and routing hierarchy.
+
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div id="algorithms" class="content">
+            <h2>Algorithms</h2>
+            <button onclick="showAlgorithmContent('Output')">Output</button>
+            <button onclick="showAlgorithmContent('Coreexact')">CoreExact</button>
+
+            <!-- Arboricity Section -->
+            <div id="Output" class="algorithm-content">
+                <h2>Output Algorithm(Algorithm 1)</h2>
+                <h4>Baseline Exact Flow-Based Method</h4>
+                <p>Our first implementation follows the baseline exact approach for finding the densest h-clique
+                    subgraph, adapting Goldberg's classic flow-based method.
+                    This algorithm relies on a binary search over the possible range of h-clique densities. For each
+                    candidate density α, it constructs a flow network to determine if any subgraph D exists such that
+                    ρh​(D)>α.
+                    The process begins by enumerating all distinct h-cliques present in the entire input graph G. This
+                    is a prerequisite for calculating vertex clique-degrees and constructing the flow network
+                    accurately.
+                    Graph information:
+                    Nodes: 1486
+                    Edges: 3297
+                    Directed: No
+                </p>
+                <h3>As-733 Dataset Results</h3>
+                <table>
+                    <tr>
+                        <th>H-value</th>
+                        <th>Density</th>
+                        <th>Execution Time</th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>415.000000</td>
+                        <td>2.52 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>638.999999</td>
+                        <td>2.47 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>1039.999999</td>
+                        <td>3.90 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>1594.999999</td>
+                        <td>6.87 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>1565.999999</td>
+                        <td>8.51 seconds</td>
+                    </tr>
+                </table>
+
+
+                <div class="graph-container">
+                    <h3>As-733 Density Distribution</h3>
+                    <canvas id="outputAsdense"></canvas>
+                </div>
+                <div class="graph-container">
+                    <h3>As-733 Time Distribution</h3>
+                    <canvas id="outputAsTime"></canvas>
+                </div>
+
+
+                <h3>As-Caida Results</h3>
+                <table>
+                    <tr>
+                        <th>H-value</th>
+                        <th>Density</th>
+                        <th>Execution Time</th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2627.999998</td>
+                        <td>1024.93 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>3812.999996</td>
+                        <td>310.51 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>9860.999991</td>
+                        <td>732.58 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>20112.999981</td>
+                        <td>1592.73 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>33754.999969</td>
+                        <td>2438.98 seconds</td>
+                    </tr>
+                </table>
+
+
+                <div class="graph-container">
+                    <h3>As-Caida Density Distribution</h3>
+                    <canvas id="outputCaidadense"></canvas>
+                </div>
+                <div class="graph-container">
+                    <h3>As-Caida Time Distribution</h3>
+                    <canvas id="outputCaidaTime"></canvas>
+                </div>
+
+
+                <!-- Email-Enron Dataset Results -->
+                <h3>Ca-HepTh Dataset Results</h3>
+                <table>
+                    <tr>
+                        <th>H-value</th>
+                        <th>Density</th>
+                        <th>Execution Time</th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>65.000000</td>
+                        <td>198.44 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>505.000000</td>
+                        <td>181.04 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>9860.999991</td>
+                        <td>732.58 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>31548.999971</td>
+                        <td>848.78 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>169972.999842</td>
+                        <td>2633.43 seconds</td>
+                    </tr>
+                </table>
+
+                <!-- Clique Size Distribution Graph -->
+                <div class="graph-container">
+                    <h3>Ca-HepTh Density Distribution</h3>
+                    <canvas id="outputCadense"></canvas>
+                </div>
+                <div class="graph-container">
+                    <h3>Ca-HepTh Time Distribution</h3>
+                    <canvas id="outputCaTime"></canvas>
+                </div>
+            </div>
+
+
+            <div id="Coreexact" class="algorithm-content">
+                <h2>CoreExact Algorithm(Algorithm 4)</h2>
+                <h4>Core-Based Exact Method</h4>
+                <p>To address the efficiency limitations, we implemented an optimized exact algorithm based on h-clique
+                    core decomposition.
+                    Prunes the search space using core decomposition before applying the flow-based search.
+                    Computes the h-clique core number for every vertex based on its participation in h-cliques within
+                    iteratively refined subgraphs. Identifies the maximum core number, kmax​.
+                    Graph information:
+                    Nodes: 9877
+                    Edges: 51971
+                    Directed: Yes
+                </p>
+                <h3>As-733 Dataset Results</h3>
+                <table>
+                    <tr>
+                        <th>H-value</th>
+                        <th>Density</th>
+                        <th>Execution Time</th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>8.321429</td>
+                        <td>0.98 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>35.800000</td>
+                        <td>2.94 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>96.580645</td>
+                        <td>6.36 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>178.080000</td>
+                        <td>13.77 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>220.227273</td>
+                        <td>16.72 seconds</td>
+                    </tr>
+                </table>
+                <div class="graph-container">
+                    <h3>As-733 Density Distribution</h3>
+                    <canvas id="coreAsdense"></canvas>
+                </div>
+                <div class="graph-container">
+                    <h3>As-733 Time Distribution</h3>
+                    <canvas id="coreAsTime"></canvas>
+                </div>
+                <h3>As-Caida Results</h3>
+                <table>
+                    <tr>
+                        <th>H-value</th>
+                        <th>Density</th>
+                        <th>Execution Time</th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>17.111111</td>
+                        <td>236.91 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>86.947674</td>
+                        <td>431.45 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>403.074627</td>
+                        <td>793.94 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>873.671642</td>
+                        <td>2370.28 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>1366.825397</td>
+                        <td>4792.01 seconds</td>
+                    </tr>
+                </table>
+
+                <div class="graph-container">
+                    <h3>As-Caida Density Distribution</h3>
+                    <canvas id="coreCaidadense"></canvas>
+                </div>
+                <div class="graph-container">
+                    <h3>As-Caida Time Distribution</h3>
+                    <canvas id="coreCaidaTime"></canvas>
+                </div>
+
+
+                <h3>Ca-HepTh Dataset Results</h3>
+                <table>
+                    <tr>
+                        <th>H-value</th>
+                        <th>Density</th>
+                        <th>Execution Time</th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>15.500000</td>
+                        <td>55.67 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>155.000000</td>
+                        <td>161.94 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>1123.750000</td>
+                        <td>928.51 seconds</td>
+                    </tr>
+                </table>
+
+
+                <div class="graph-container">
+                    <h3>Ca-HepTh Density Distribution</h3>
+                    <canvas id="coreCadense"></canvas>
+                </div>
+                <div class="graph-container">
+                    <h3>Ca-HepTh Time Distribution</h3>
+                    <canvas id="coreCaTime"></canvas>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+        <script>
+            function density(canvasId, labels, data) {
+                var ctx = document.getElementById(canvasId).getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Density',
+                            data: data,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'H-value'  // X-axis label
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Density'  // Y-axis label
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function exec(canvasId, labels, data) {
+                var ctx = document.getElementById(canvasId).getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Excution Time',
+                            data: data,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'H-value'  // X-axis label
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Time in sconds'  // Y-axis label
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            const Labels = [2, 3, 4, 5, 6];
+            const outputAsDataDense = [415.000000, 638.999999, 1039.999999, 1594.999999, 1565.999999];
+            const outputAsDataTime = [2.52, 2.47, 3.90, 6.87, 8.51];
+            density('outputAsdense', Labels, outputAsDataDense)
+            exec('outputAsTime', Labels, outputAsDataTime)
+            const ouputCaidaDataDense = [2627.999998, 3812.999996, 9860.999991, 20112.999981, 33754.999969];
+            const ouputCaidaDataTime = [1024.93, 310.51, 732.58, 1592.73, 2438.98];
+            density('outputCaidadense', Labels, ouputCaidaDataDense)
+            exec('outputCaidaTime', Labels, ouputCaidaDataTime)
+            const ouputCaDataDense = [65.000000, 505.000000, 9860.999991, 31548.999971, 169972.999842];
+            const ouputCaDataTime = [198.44, 181.04, 732.58, 848.78, 2633.43]
+            density('outputCadense', Labels, ouputCaDataDense)
+            exec('outputCaTime', Labels, ouputCaDataTime)
+            const coreAsDataDense = [8.321429, 35.800000, 96.580645, 178.080000, 220.227273];
+            const coreAsDataTime = [0.98, 2.94, 6.36, 13.77, 16.72];
+            density('coreAsdense', Labels, coreAsDataDense)
+            exec('coreAsTime', Labels, coreAsDataTime)
+
+            const coreCaidaDataDense = [17.111111, 86.947674, 403.074627, 873.671642, 1366.825397];
+            const coreCaidaDataTime = [236.91, 431.45, 793.94, 2370.28, 4792.01];
+            density('coreCaidadense', Labels, coreCaidaDataDense)
+            exec('coreCaidaTime', Labels, coreCaidaDataTime)
+            const coreCaDataDense = [15.5, 155.0, 1123.75];
+            const coreCaDataTime = [55.67, 161.94, 928.51];
+            density('coreCadense', [2, 3, 4], coreCaDataDense)
+            exec('coreCaTime', [2, 3, 4], coreCaDataTime)
+
+
+        </script>
+</body>
+
+</html>

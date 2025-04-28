@@ -1,0 +1,16 @@
+Dataset: As-733-clean.txt
+Algorithm: CoreExact
+h-value: 6
+Graph information:
+  Nodes: 1486
+  Edges: 3297
+  Directed: No
+
+Algorithm execution:
+  Final density: 220.227273
+  Total execution time: 16.72 seconds
+
+Results:
+  Densest subgraph size: 22 nodes
+  Densest subgraph vertices (remapped IDs): 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 15, 18, 22, 23, 27, 28, 31, 41, 63, 99, 129, 146
+  Densest subgraph vertices (original IDs): 1, 701, 2914, 293, 286, 2828, 3561, 7018, 2497, 1239, 1673, 2685, 3356, 2548, 6453, 1740, 6172, 209, 3549, 297, 2551, 1746
