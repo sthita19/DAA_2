@@ -1,5 +1,10 @@
 # Densest Subgraph Algorithms for h-Cliques
 
+## Project Website
+
+For more information or to access the hosted version of the project, visit the [Project Website](https://sthita19.github.io/DAA_2/).
+This is the github link for codes and other stuff visit the [github repository](https://github.com/sthita19/DAA_2/)
+
 ## Algorithm Overview
 
 The goal of this project is to solve the **Densest Subgraph Problem for h-cliques**, which involves finding the subgraph with the maximum ratio of h-cliques to vertices. We provide two algorithms that efficiently compute densest subgraphs using different approaches.
@@ -94,4 +99,6 @@ Both algorithms output:
 
 ---
 
-This integrated version combines both algorithms, their descriptions, execution steps, and group contributions in a clear, cohesive manner.
+---
+
+This version includes a clean integration of both algorithms, their file descriptions, execution steps, and group contributions, with an added link to the project website.
